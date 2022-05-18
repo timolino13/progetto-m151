@@ -27,10 +27,7 @@ class HikeController extends Controller
      */
     public function index(): View
     {
-        Debugbar::info('HikeController@index');
-
         $hikes = Hike::all();
-        Debugbar::info($hikes);
 
         return view('hikes.index', compact('hikes'));
     }
@@ -53,14 +50,13 @@ class HikeController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
         Debugbar::info('HikeController@store');
         Debugbar::info($request);
 
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'max:255',
-            'rating' => 'integer|min:1|max:5',
+            'rating' => 'min:1|max:5',
         ]);
 
         Hike::create($validated);
@@ -105,7 +101,7 @@ class HikeController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:255',
-            'rating' => 'integer|min:1|max:5',
+            'rating' => 'min:1|max:5',
         ]);
 
         $hike = Hike::findOrFail($id);
@@ -119,13 +115,11 @@ class HikeController extends Controller
     /**
      * Soft delete the specified resource in storage.
      *
-     * @param int $id
+     * @param Hike $hike
      * @return RedirectResponse
      */
-   public function delete(int $id): RedirectResponse
+    public function destroy(Hike $hike): RedirectResponse
     {
-        $hike = Hike::findOrFail($id);
-
         $hike->delete();
 
         return redirect()->route('hikes.index')
