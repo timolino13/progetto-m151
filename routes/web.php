@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HikeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HikeController::class, 'index'])->name('hikes.index');
 
 Route::resource('hikes', HikeController::class)->middleware('auth');
+Route::resource('groups', GroupController::class)->middleware('auth');
 
 Auth::routes();
 

@@ -79,13 +79,12 @@ class HikeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Hike $hike
      * @return View
      */
-    public function edit(int $id): View
+    public function edit(Hike $hike): View
     {
-        $hike = Hike::findOrFail($id);
-
+        Debugbar::info($hike);
         return view('hikes.edit', compact('hike'));
     }
 
@@ -93,18 +92,16 @@ class HikeController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param Hike $hike
      * @return RedirectResponse
      */
-    public function update(Request $request, int $id): RedirectResponse
+    public function update(Request $request,Hike $hike): RedirectResponse
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'max:255',
             'rating' => 'min:1|max:5',
         ]);
-
-        $hike = Hike::findOrFail($id);
 
         $hike->update($validated);
 

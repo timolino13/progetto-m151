@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add new hike</h2>
+                <h2>Create new Group</h2>
             </div>
             <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('hikes.index') }}">Back</a>
+            <a class="btn btn-primary" href="{{ route('groups.index') }}">Back</a>
             </div>
         </div>
     </div>
@@ -23,14 +23,14 @@
         </div>
     @endif
 
-    <form action="{{ route('hikes.store') }}" method="POST">
+    <form action="{{ route('groups.store') }}" method="POST">
         @csrf
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title:</strong>
-                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Name">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -38,13 +38,6 @@
                     <strong>Description:</strong>
                     <textarea class="form-control" style="height:150px" name="description"
                               placeholder="Description"></textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Rating:</strong>
-                    <input type="range" min="1" max="5" step="0.5" name="rating" class="form-control form-control-range"
-                           placeholder="Rating">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

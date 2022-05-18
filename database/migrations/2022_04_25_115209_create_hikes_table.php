@@ -16,8 +16,8 @@ class CreateHikesTable extends Migration
         Schema::create('hikes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->string('rating');
+            $table->string('description')->nullable();
+            $table->string('rating')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

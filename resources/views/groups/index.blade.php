@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Hikes</h2>
+                    <h2>Groups</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('hikes.create') }}"> Create New Hike</a>
+                    <a class="btn btn-success" href="{{ route('groups.create') }}"> Create New group</a>
                 </div>
             </div>
         </div>
@@ -22,25 +22,23 @@
         <div>
             <table class="table table-bordered table-responsive-lg">
                 <tr>
-                    <th>Title</th>
+                    <th>Name</th>
                     <th>Description</th>
-                    <th>Rating</th>
                     <th>Date Created</th>
                     <th width="280px">Action</th>
                 </tr>
-                @if($hikes)
-                    @foreach ($hikes as $hike)
+                @if($groups)
+                    @foreach ($groups as $group)
                         <tr>
-                            <td>{{ $hike->title }}</td>
-                            <td>{{ $hike->description }}</td>
-                            <td>{{ $hike->rating }}</td>
-                            <td>{{ $hike->created_at }}</td>
+                            <td>{{ $group->name }}</td>
+                            <td>{{ $group->description }}</td>
+                            <td>{{ $group->created_at }}</td>
                             <td>
-                                <form action="{{ route('hikes.destroy',$hike->id) }}" method="POST">
+                                <form action="{{ route('groups.destroy',$group->id) }}" method="POST">
 
-                                    <a class="btn btn-info" href="{{ route('hikes.show',$hike->id) }}">Show</a>
+                                    <a class="btn btn-info" href="{{ route('groups.show',$group->id) }}">Show</a>
 
-                                    <a class="btn btn-primary" href="{{ route('hikes.edit',$hike->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('groups.edit',$group->id) }}">Edit</a>
 
                                     @csrf
                                     @method('DELETE')
