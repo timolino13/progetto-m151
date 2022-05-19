@@ -25,18 +25,24 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Date Created</th>
+                    <th>Created by</th>
                     <th>Action</th>
                 </tr>
-                @if($groups)
+                @if(count($groups) > 0)
                     @foreach ($groups as $group)
                         <tr>
                             <td>{{ $group->name }}</td>
                             <td>{{ $group->description }}</td>
                             <td>{{ $group->created_at }}</td>
+                            <td>{{ $group->user->name }}</td>
                             <td>
                                 <a class="btn btn-info" href="{{ route('groups.show',$group->id) }}">Show</a>
                         </tr>
                     @endforeach
+                @else
+                    <tr>
+                        <td colspan="4">No groups found</td>
+                    </tr>
                 @endif
             </table>
         </div>

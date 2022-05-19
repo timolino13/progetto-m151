@@ -35,6 +35,8 @@ class HikeController extends Controller
             ->where('user_id', Auth::id())
             ->get();
 
+        Debugbar::info($hikes);
+
         return view('hikes.index', compact('hikes'));
     }
 
@@ -67,6 +69,7 @@ class HikeController extends Controller
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
             'user_id' => 'required|integer',
+            'group_id' => '',
         ]);
 
         Debugbar::info($validated);
@@ -110,11 +113,16 @@ class HikeController extends Controller
      */
     public function update(Request $request, Hike $hike): RedirectResponse
     {
+        Debugbar::info($request);
+
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
+            'group_id' => '',
         ]);
+
+        Debugbar::info($validated);
 
         $hike->update($validated);
 

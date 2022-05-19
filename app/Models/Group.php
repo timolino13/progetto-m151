@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,6 +43,7 @@ class Group extends Model
     protected $fillable = [
         'name',
         'description',
+        'user_id',
     ];
 
     /**
@@ -51,6 +53,16 @@ class Group extends Model
      */
     protected $casts = [
     ];
+
+    /**
+     *  The user that the group belongs to.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      *  The users that belong to the group.
@@ -71,4 +83,5 @@ class Group extends Model
     {
         return $this->hasMany(Hike::class);
     }
+
 }

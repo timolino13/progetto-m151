@@ -28,7 +28,7 @@
                     <th>Date Created</th>
                     <th width="280px">Action</th>
                 </tr>
-                @if($hikes)
+                @if(count($hikes) > 0)
                     @foreach ($hikes as $hike)
                         <tr>
                             <td>{{ $hike->title }}</td>
@@ -36,15 +36,23 @@
                             <td>{{ $hike->rating }}</td>
                             <td>{{ $hike->created_at }}</td>
                             <td>
-                                <a class="btn btn-info" href="{{ route('hikes.show',$hike->id) }}">Show</a>
+                                <form action="{{ route('hikes.destroy',$hike->id) }}" method="POST">
 
-                                @if(Auth::user()->id == $hike->user_id)
+                                    <a class="btn btn-info" href="{{ route('hikes.show',$hike->id) }}">Show</a>
 
-                                    <a class="btn btn-danger" href="{{ route('hikes.destroy',$hike->id) }}"
-                                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                            @endif
+                                    @csrf
+                                    @method('DELETE')
+
+                                    @if(Auth::user()->id == $hike->user_id)
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    @endif
+                                </form>
                         </tr>
                     @endforeach
+                @else
+                    <tr>
+                        <td colspan="5">No hikes found</td>
+                    </tr>
                 @endif
             </table>
         </div>

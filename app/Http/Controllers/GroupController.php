@@ -7,6 +7,7 @@ use App\Models\Hike;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class GroupController extends Controller
@@ -28,8 +29,9 @@ class GroupController extends Controller
      */
     public function index(): View
     {
-        // Get all groups the user is a member of
         $groups = auth()->user()->groups()->get();
+
+        Debugbar::info($groups);
 
         return view('groups.index', compact('groups'));
     }
@@ -52,12 +54,18 @@ class GroupController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        $request->request->add(['user_id' => Auth::id()]);
+
         $validated = $request->validate([
             'name' => 'required|max:255',
             'description' => 'max:255',
+            'user_id' => 'required|integer',
         ]);
 
-        Group::create($validated);
+        $group = Group::create($validated);
+
+        $group->users()->attach(Auth::id());
 
         return redirect()->route('groups.index')
             ->with('success', 'Group created successfully.');

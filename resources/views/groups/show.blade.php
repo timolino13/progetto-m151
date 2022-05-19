@@ -32,9 +32,15 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Hikes:</strong>
-                @foreach($hikes as $hike)
-                    <li><a href="{{route('hikes.show', $hike)}}">{{ $hike->title }}</a></li>
-                @endforeach
+                @if(count($group->hikes) > 0)
+                    <ul>
+                        @foreach($group->hikes as $hike)
+                            <li>{{ $hike->name }}</li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No hikes yet.</p>
+                @endif
             </div>
     </div>
 @endsection
