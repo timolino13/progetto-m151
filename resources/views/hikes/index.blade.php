@@ -36,17 +36,13 @@
                             <td>{{ $hike->rating }}</td>
                             <td>{{ $hike->created_at }}</td>
                             <td>
-                                <form action="{{ route('hikes.destroy',$hike->id) }}" method="POST">
+                                <a class="btn btn-info" href="{{ route('hikes.show',$hike->id) }}">Show</a>
 
-                                    <a class="btn btn-info" href="{{ route('hikes.show',$hike->id) }}">Show</a>
+                                @if(Auth::user()->id == $hike->user_id)
 
-                                    <a class="btn btn-primary" href="{{ route('hikes.edit',$hike->id) }}">Edit</a>
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                    <a class="btn btn-danger" href="{{ route('hikes.destroy',$hike->id) }}"
+                                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                            @endif
                         </tr>
                     @endforeach
                 @endif

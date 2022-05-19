@@ -47,6 +47,21 @@
                            placeholder="Rating">
                 </div>
             </div>
+
+            @if(count($groups) > 0)
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Group:</strong>
+                        <select class="form-control" name="group_id">
+                            <option value="">No group</option>
+                            @foreach($groups as $group)
+                                <option value="{{ $group->id }}">{{ $group->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            @endif
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

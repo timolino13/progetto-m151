@@ -25,7 +25,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Date Created</th>
-                    <th width="280px">Action</th>
+                    <th>Action</th>
                 </tr>
                 @if($groups)
                     @foreach ($groups as $group)
@@ -34,17 +34,7 @@
                             <td>{{ $group->description }}</td>
                             <td>{{ $group->created_at }}</td>
                             <td>
-                                <form action="{{ route('groups.destroy',$group->id) }}" method="POST">
-
-                                    <a class="btn btn-info" href="{{ route('groups.show',$group->id) }}">Show</a>
-
-                                    <a class="btn btn-primary" href="{{ route('groups.edit',$group->id) }}">Edit</a>
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a class="btn btn-info" href="{{ route('groups.show',$group->id) }}">Show</a>
                         </tr>
                     @endforeach
                 @endif

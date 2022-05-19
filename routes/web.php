@@ -23,5 +23,3 @@ Route::resource('hikes', HikeController::class)->middleware('auth');
 Route::resource('groups', GroupController::class)->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');

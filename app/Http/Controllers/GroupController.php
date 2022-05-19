@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Hike;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class GroupController extends Controller
      */
     public function index(): View
     {
-        $groups = Group::all();
+        // Get all groups the user is a member of
+        $groups = auth()->user()->groups()->get();
 
         return view('groups.index', compact('groups'));
     }
@@ -69,7 +71,10 @@ class GroupController extends Controller
      */
     public function show(Group $group): View
     {
-        return view('groups.show', compact('group'));
+        // Get all the hikes in the group
+        $hikes = $group->hikes()->get();
+
+        return view('groups.show', compact('group', 'hikes'));
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Hike;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,7 +30,10 @@ class HikeController extends Controller
      */
     public function index(): View
     {
-        $hikes = Hike::all();
+        // Get all hikes the user created
+        $hikes = Hike::query()
+            ->where('user_id', Auth::id())
+            ->get();
 
         return view('hikes.index', compact('hikes'));
     }
@@ -40,7 +45,8 @@ class HikeController extends Controller
      */
     public function create(): View
     {
-        return view('hikes.create');
+        $groups = Group::all();
+        return view('hikes.create', compact('groups'));
     }
 
     /**
@@ -91,7 +97,8 @@ class HikeController extends Controller
     public function edit(Hike $hike): View
     {
         Debugbar::info($hike);
-        return view('hikes.edit', compact('hike'));
+        $groups = Group::all();
+        return view('hikes.edit', compact('hike', 'groups'));
     }
 
     /**
@@ -101,7 +108,7 @@ class HikeController extends Controller
      * @param Hike $hike
      * @return RedirectResponse
      */
-    public function update(Request $request,Hike $hike): RedirectResponse
+    public function update(Request $request, Hike $hike): RedirectResponse
     {
         $validated = $request->validate([
             'title' => 'required|max:255',

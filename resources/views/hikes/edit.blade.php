@@ -6,9 +6,6 @@
             <div class="pull-left">
                 <h2>Edit Hike</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('hikes.index') }}"> Back</a>
-            </div>
         </div>
     </div>
 
@@ -49,6 +46,22 @@
                            placeholder="Rating">
                 </div>
             </div>
+
+            @if(count($groups) > 0)
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Group:</strong>
+                    <select class="form-control" name="group_id">
+                        <option value="">No group</option>
+                        @foreach($groups as $group)
+                            <option value="{{ $group->id }}"
+                                    @if($group->id == $hike->group_id) selected @endif>{{ $group->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            @endif
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
