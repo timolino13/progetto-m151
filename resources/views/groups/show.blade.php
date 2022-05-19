@@ -31,5 +31,13 @@
                 {{ $group->created_at }}
             </div>
         </div>
+        @foreach($group->users as $user)
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>User:</strong>
+                    {{ $user->name }}
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Hike;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class HikeController extends Controller
@@ -53,11 +54,16 @@ class HikeController extends Controller
         Debugbar::info('HikeController@store');
         Debugbar::info($request);
 
+        $request->request->add(['user_id' => Auth::id()]);
+
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
+            'user_id' => 'required|integer',
         ]);
+
+        Debugbar::info($validated);
 
         Hike::create($validated);
 

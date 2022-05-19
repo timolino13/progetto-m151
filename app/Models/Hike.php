@@ -40,6 +40,7 @@ class Hike extends Model
         'title',
         'description',
         'rating',
+        'user_id',
     ];
 
     /**

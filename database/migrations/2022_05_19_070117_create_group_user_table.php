@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHikesTable extends Migration
+class CreateGroupUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateHikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hikes', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description')->nullable();
-            $table->string('rating')->nullable();
+            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +28,6 @@ class CreateHikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hikes');
+        Schema::dropIfExists('group_user');
     }
 }
