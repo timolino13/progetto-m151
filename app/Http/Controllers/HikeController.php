@@ -68,8 +68,14 @@ class HikeController extends Controller
             'title' => 'required|max:255',
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
-            'user_id' => 'required|integer',
             'group_id' => '',
+            'difficulty' => 'numeric|min:0|max:10',
+            'distance' => 'numeric|min:0',
+            'duration' => '',
+            'startLocation' => 'max:255',
+            'endLocation' => 'max:255',
+            'done' => 'boolean',
+            'user_id' => 'required|integer',
         ]);
 
         Debugbar::info($validated);
@@ -120,6 +126,12 @@ class HikeController extends Controller
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
             'group_id' => '',
+            'difficulty' => 'numeric|min:0|max:10',
+            'distance' => 'numeric|min:0',
+            'duration' => '',
+            'startLocation' => 'max:255',
+            'endLocation' => 'max:255',
+            'done' => 'boolean',
         ]);
 
         Debugbar::info($validated);

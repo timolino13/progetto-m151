@@ -93,10 +93,7 @@ class GroupController extends Controller
      */
     public function show(Group $group): View
     {
-        // Get all the hikes in the group
-        $hikes = $group->hikes()->get();
-
-        return view('groups.show', compact('group', 'hikes'));
+        return view('groups.show', compact('group'));
     }
 
     /**

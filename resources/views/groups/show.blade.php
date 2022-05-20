@@ -6,9 +6,6 @@
             <div class="pull-left">
                 <h2>{{ $group->name }}</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('groups.index') }}">Back</a>
-            </div>
         </div>
     </div>
 
@@ -32,7 +29,9 @@
                     @if(count($group->hikes) > 0)
                         <ul>
                             @foreach($group->hikes as $hike)
-                                <li>{{ $hike->name }}</li>
+                                <li>
+                                    <a href="{{ route('hikes.show', $hike) }}">{{$hike->title}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     @else

@@ -21,7 +21,6 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Date Created</th>
                     <th>Created by</th>
                     <th>Action</th>
                 </tr>
@@ -29,8 +28,17 @@
                     @foreach ($groups as $group)
                         <tr>
                             <td>{{ $group->name }}</td>
-                            <td>{{ $group->description }}</td>
-                            <td>{{ $group->created_at }}</td>
+                            <td>
+                                @if($group->description == null)
+                                    <p>No description</p>
+                                @else
+                                    @if(strlen($group->description) > 50)
+                                        {{ substr($group->description, 0, 50) }}...
+                                    @else
+                                        {{ $group->description }}
+                                    @endif
+                                @endif
+                            </td>
                             <td>{{ $group->user->name }}</td>
                             <td>
                                 <a class="btn btn-info" href="{{ route('groups.show',$group->id) }}">Show</a>

@@ -7,7 +7,7 @@
                 <h2>Add new hike</h2>
             </div>
             <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('hikes.index') }}">Back</a>
+                <a class="btn btn-primary" href="{{ route('hikes.index') }}">Back</a>
             </div>
         </div>
     </div>
@@ -40,11 +40,51 @@
                               placeholder="Description"></textarea>
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Rating:</strong>
-                    <input type="range" min="1" max="5" step="0.5" name="rating" class="form-control form-control-range"
-                           placeholder="Rating">
+                    <strong>Difficulty (0-10):</strong>
+                    <input type="number" min="0" max="10" name="difficulty" class="form-control" placeholder="Difficulty">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Distance (km):</strong>
+                    <input type="number" min="0" name="distance" class="form-control" placeholder="Distance">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Duration (hh:mm):</strong>
+                    <input type="text" name="duration" class="form-control" placeholder="Duration">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Start location:</strong>
+                    <input type="text" name="startLocation" class="form-control" placeholder="Start location">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>End location:</strong>
+                    <input type="text" name="endLocation" class="form-control" placeholder="End location">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Done:</strong>
+                    <select name="done" class="form-control">
+                        <option value="{{false}}">No</option>
+                        <option value="{{true}}">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Rating (0-5):</strong>
+                    <input type="number" min="0" max="5" step="0.5" name="difficulty" class="form-control" placeholder="Difficulty">
                 </div>
             </div>
 

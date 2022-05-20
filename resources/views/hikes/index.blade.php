@@ -23,18 +23,44 @@
             <table class="table table-bordered table-responsive-lg">
                 <tr>
                     <th>Title</th>
-                    <th>Description</th>
+                    <th>Distance</th>
+                    <th>Difficulty</th>
+                    <th>Done</th>
                     <th>Rating</th>
-                    <th>Date Created</th>
                     <th width="280px">Action</th>
                 </tr>
                 @if(count($hikes) > 0)
                     @foreach ($hikes as $hike)
                         <tr>
                             <td>{{ $hike->title }}</td>
-                            <td>{{ $hike->description }}</td>
-                            <td>{{ $hike->rating }}</td>
-                            <td>{{ $hike->created_at }}</td>
+                            <td>
+                                @if($hike->distance == null)
+                                    Not set
+                                @else
+                                    {{ $hike->distance }} km
+                                @endif
+                            </td>
+                            <td>
+                                @if($hike->difficulty == null)
+                                    Not set
+                                @else
+                                    {{ $hike->difficulty }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($hike->done)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
+                            <td>
+                                @if($hike->rating == null)
+                                    Not set
+                                @else
+                                    {{ $hike->rating }}
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('hikes.destroy',$hike->id) }}" method="POST">
 

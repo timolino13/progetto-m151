@@ -17,7 +17,13 @@ class CreateHikesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->string('rating')->nullable();
+            $table->double('rating')->nullable();
+            $table->boolean('done')->default(false);
+            $table->double('difficulty')->nullable();
+            $table->double('distance')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('startLocation')->nullable();
+            $table->string('endLocation')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();
