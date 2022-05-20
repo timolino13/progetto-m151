@@ -17,30 +17,34 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                {{ $group->description }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Users:</strong>
-                @foreach($group->users as $user)
-                    <li>{{ $user->name }}</li>
-                @endforeach
+                @if($group->description)
+                    <p>{{ $group->description }}</p>
+                @else
+                    <p>No description</p>
+                @endif
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Hikes:</strong>
-                @if(count($group->hikes) > 0)
-                    <ul>
-                        @foreach($group->hikes as $hike)
-                            <li>{{ $hike->name }}</li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p>No hikes yet.</p>
-                @endif
+        @if($group->users->contains(Auth::user()) || $group->user == Auth::user())
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Hikes:</strong>
+                    @if(count($group->hikes) > 0)
+                        <ul>
+                            @foreach($group->hikes as $hike)
+                                <li>{{ $hike->name }}</li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p>No hikes yet.</p>
+                    @endif
+                </div>
             </div>
-    </div>
+        @endif
+
+        @if(!$group->users->contains(Auth::user()))
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a class="btn btn-primary" href="{{ route('groups.join', $group->id) }}">Join</a>
+            </div>
+    @endif
 @endsection

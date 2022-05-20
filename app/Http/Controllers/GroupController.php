@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Hike;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -129,5 +130,19 @@ class GroupController extends Controller
 
         return redirect()->route('groups.index')
             ->with('success', 'Group deleted successfully');
+    }
+
+    /**
+     * Add the current user to a group
+     *
+     * @param Group $group
+     * @return RedirectResponse
+     */
+    public function join(Group $group): RedirectResponse
+    {
+        $group->users()->attach(Auth::id());
+
+        return redirect()->route('groups.index')
+            ->with('success', 'User added to group successfully');
     }
 }
