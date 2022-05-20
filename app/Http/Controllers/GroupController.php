@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
-use App\Models\Hike;
-use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,13 +22,14 @@ class GroupController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of groups the user is part of.
      *
      * @return View
      */
     public function index(): View
     {
-        $groups = auth()->user()->groups()->get();
+
+        $groups = Auth::user()->groups;
 
         Debugbar::info($groups);
 
@@ -38,7 +37,21 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a list of all groups.
+     *
+     * @return View
+     */
+    public function all(): View
+    {
+        $groups = Group::all();
+
+        Debugbar::info($groups);
+
+        return view('groups.explore', compact('groups'));
+    }
+
+    /**
+     * Show the form for creating a new group.
      *
      * @return View
      */
@@ -48,7 +61,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created group in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -73,7 +86,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified group.
      *
      * @param Group $group
      * @return View
@@ -87,7 +100,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified group.
      *
      * @param Group $group
      * @return View
@@ -99,7 +112,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified group in storage.
      *
      * @param Request $request
      * @param Group $group
@@ -119,7 +132,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Soft delete the specified resource in storage.
+     * Soft delete the specified group in storage.
      *
      * @param Group $group
      * @return RedirectResponse

@@ -46,6 +46,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('groups.index') }}">My groups</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('groups.all') }}">Explore groups</a>
+                        </li>
                     @endguest
                 </ul>
 

@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HikeController::class, 'index'])->name('hikes.index');
 
+Route::get('/groups/{group}/join', [GroupController::class, 'join'])->name('groups.join');
+Route::get('/groups/explore', [GroupController::class, 'all'])->name('groups.all');
+
 Route::resource('hikes', HikeController::class)->middleware('auth');
 Route::resource('groups', GroupController::class)->middleware('auth');
-Route::get('/groups/{group}/join', [GroupController::class, 'join'])->name('groups.join');
 
 Auth::routes();
