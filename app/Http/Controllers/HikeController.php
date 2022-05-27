@@ -36,6 +36,7 @@ class HikeController extends Controller
             ->get();
 
         Debugbar::info($hikes);
+        Debugbar::info(Auth::id());
 
         return view('hikes.index', compact('hikes'));
     }
@@ -69,12 +70,12 @@ class HikeController extends Controller
             'description' => 'max:255',
             'rating' => 'min:1|max:5',
             'group_id' => '',
-            'difficulty' => 'numeric|min:0|max:10',
-            'distance' => 'numeric|min:0',
+            'difficulty' => 'min:0|max:10',
+            'distance' => 'min:0',
             'duration' => '',
             'startLocation' => 'max:255',
             'endLocation' => 'max:255',
-            'done' => 'boolean',
+            'done' => '',
             'user_id' => 'required|integer',
         ]);
 

@@ -69,7 +69,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    @if(Auth::user()->id == $hike->user_id)
+                                    @if(Auth::id() == $hike->user_id)
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     @endif
                                 </form>

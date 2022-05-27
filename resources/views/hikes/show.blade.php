@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        @if($hike->user->id == Auth::id())
+        @if($hike->user_id == Auth::id())
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <a class="btn btn-primary" href="{{ route('hikes.edit',$hike->id) }}">Edit</a>

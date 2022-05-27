@@ -75,8 +75,8 @@
                 <div class="form-group">
                     <strong>Done:</strong>
                     <select name="done" class="form-control">
-                        <option value="{{false}}">No</option>
-                        <option value="{{true}}">Yes</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
             </div>
